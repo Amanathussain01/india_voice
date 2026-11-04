@@ -12,7 +12,7 @@ import {
 } from "react-router-dom";
 import "./styles.css";
 
-const API = "/api";
+const API = import.meta.env.VITE_API_URL || "http://localhost:5013";
 const roleLabel = {
   "full-admin": "Super Admin",
   "read-only-admin": "Admin Read Only",
@@ -51,7 +51,7 @@ async function api(path, options = {}) {
   const token = localStorage.getItem("iv_token");
   // FormData must NOT get a manual Content-Type, the browser adds the multipart boundary itself.
   const isFormData = typeof FormData !== "undefined" && options.body instanceof FormData;
-  const response = await fetch(API + path, {
+  const response = await fetch(API + "/api" + path, {
     ...options,
     headers: {
       ...(options.body && !isFormData ? { "Content-Type": "application/json" } : {}),
@@ -949,7 +949,7 @@ function GrievanceManager({ feedbackMode = false }) {
   }
 
   const heads = feedbackMode ? ["Type", "Post / Grievance", "Feedback", "Submitted By", "Date", "Action"] : ["Grievance", "Area", "Vidhan Sabha", "Parishad", "Submitted By", "Status", "Date", "Actions"];
-  const imgUrl = (src) => (src.startsWith("http") ? src : `${API}${src}`);
+  const imgUrl = (src) => (src.startsWith("http") ? src : `${API}/api${src}`);
 
   return (
     <section className="page">
