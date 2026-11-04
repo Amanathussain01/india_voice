@@ -192,7 +192,7 @@ function Login() {
           </button>
         </form>
         <div className="demo-box">
-          <b>Demo logins</b>
+          {/* <b>Demo logins</b> */}
           {/* <br />Super Admin: admin@indiavoice.com / Admin@123 */}
           {/* <br />Reporter: reporter@indiavoice.com / Reporter@123 */}
           {/* <br />Read Only: readonly@indiavoice.com / ReadOnly@123 */}
