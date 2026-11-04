@@ -639,4 +639,8 @@ app.delete("/api/grievance-feedback/:id", auth, allow("full-admin"), (req, res) 
 
 app.use((err, _req, res, _next) => { console.error(err); const status = err instanceof multer.MulterError ? 400 : 400; res.status(status).json({ message: err.message || "Server error" }); });
 
-app.listen(5013, () => console.log("India Voice dashboard API running on http://localhost:5013"));
+const PORT = process.env.PORT || 5013;
+
+app.listen(PORT, "0.0.0.0", () => {
+  console.log(`India Voice API running on port ${PORT}`);
+});
